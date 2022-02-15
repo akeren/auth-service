@@ -1,5 +1,7 @@
 import express, { Express, Request, Response } from 'express';
 import 'express-async-errors';
+import cookieSession from 'cookie-session';
+import { appConfig } from '@src/config';
 import { errorHandler } from '@src/middlewares/error.handler';
 import { currentUserRouter } from '@src/routes/current.user';
 import { loginRouter } from '@src/routes/login';
@@ -9,8 +11,18 @@ import { NotFoundError } from '@src/errors/not-found.error';
 
 const app: Express = express();
 
+const { environment } = appConfig;
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.set('trust proxy', true);
+
+app.use(
+  cookieSession({
+    signed: false,
+    secure: environment !== 'development',
+  })
+);
 
 // Routes
 app.use(registerRouter);

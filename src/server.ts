@@ -1,21 +1,15 @@
-import dotenv from 'dotenv-safe';
 import { createServer, Server } from 'http';
 import { connect } from 'mongoose';
+import { appConfig, mongo } from '@src/config';
 import { app } from '@src/app';
 
-const name = process.env.APP_NAME || 'Auth service API';
-const port = process.env.APP_PORT || 3000;
-const host = process.env.APP_HOST || 'http://127.0.0.1';
-
-dotenv.config({
-  path: '.env',
-});
+const { name, port, host } = appConfig;
 
 const server: Server = createServer(app);
 
 (async () => {
   try {
-    await connect(process.env.MONGO_URI as string);
+    await connect(`${mongo.host}:${mongo.port}/${mongo.dbName}`);
 
     server.listen(port, () => {
       console.info(`${name} running on ${host}:${port}`);
