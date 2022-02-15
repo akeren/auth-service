@@ -2,7 +2,7 @@ import express, { Express, Request, Response } from 'express';
 import 'express-async-errors';
 import cookieSession from 'cookie-session';
 import { appConfig } from '@src/config';
-import { errorHandler } from '@src/middlewares/error.handler';
+import { errorHandler } from '@src/middlewares';
 import { currentUserRouter } from '@src/routes/current.user';
 import { loginRouter } from '@src/routes/login';
 import { logoutRouter } from '@src/routes/logout';
