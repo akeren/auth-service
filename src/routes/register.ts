@@ -1,8 +1,7 @@
 import { Router, Request, Response } from 'express';
 import { body, validationResult } from 'express-validator';
 import jwt from 'jsonwebtoken';
-import { RequestValidationError } from '@src/errors/request-validation.error';
-import { BadRequestError } from '@src/errors/bad-request.error';
+import { RequestValidationError, BadRequestError } from '@src/errors';
 import { User } from '@src/models/user.model';
 import { jwtConfig } from '@src/config';
 
