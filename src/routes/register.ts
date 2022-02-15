@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 import { RequestValidationError } from '@src/errors/request-validation.error';
 import { BadRequestError } from '@src/errors/bad-request.error';
 import { User } from '@src/models/user.model';
+import { jwtConfig } from '@src/config';
 
 const router: Router = Router();
 
@@ -36,7 +37,10 @@ router.post(
         id: user.id,
         email: user.email,
       },
-      'hello'
+      jwtConfig.secret,
+      {
+        expiresIn: jwtConfig.expiryTime,
+      }
     );
 
     req.session = {

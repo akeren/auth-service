@@ -11,3 +11,8 @@ export interface IMongo {
   dbName: string;
   password?: string;
 }
+
+export interface IJwt {
+  secret: string;
+  expiryTime: string;
+}
