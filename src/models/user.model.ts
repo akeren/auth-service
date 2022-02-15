@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-param-reassign */
 import { Schema, model } from 'mongoose';
 import { IUser, IUserModel, IUserDocument } from '@src/models/interface';
 import { Password } from '@src/utils/password';
@@ -14,7 +16,21 @@ const userSchema = new Schema(
       required: true,
     },
   },
-  { timestamps: true }
+  {
+    timestamps: true,
+    toJSON: {
+      transform(doc: any, ret: any) {
+        ret.id = ret._id;
+        ret.created_at = ret.createdAt;
+        ret.updated_at = ret.updatedAt;
+        delete ret._id;
+        delete ret.createdAt;
+        delete ret.updatedAt;
+        delete ret.password;
+        delete ret.__v;
+      },
+    },
+  }
 );
 
 // eslint-disable-next-line func-names
