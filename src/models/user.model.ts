@@ -2,7 +2,7 @@
 /* eslint-disable no-param-reassign */
 import { Schema, model } from 'mongoose';
 import { IUser, IUserModel, IUserDocument } from '@src/models/interface';
-import { Password } from '@src/utils/password';
+import { Password } from '@src/utils';
 
 const userSchema = new Schema(
   {

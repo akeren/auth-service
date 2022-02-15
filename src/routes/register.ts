@@ -1,8 +1,8 @@
 import { Router, Request, Response } from 'express';
-import { body, validationResult } from 'express-validator';
+import { body } from 'express-validator';
 import jwt from 'jsonwebtoken';
-import { RequestValidationError } from '@src/errors/request-validation.error';
-import { BadRequestError } from '@src/errors/bad-request.error';
+import { BadRequestError } from '@src/errors';
+import { validateRequest } from '@src/middlewares';
 import { User } from '@src/models/user.model';
 import { jwtConfig } from '@src/config';
 
@@ -14,13 +14,8 @@ router.post(
     body('email').isEmail().withMessage('Email must be valid'),
     body('password').trim().isLength({ min: 4, max: 20 }).withMessage('Password must contain at least 4 characters'),
   ],
+  validateRequest,
   async (req: Request, res: Response) => {
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-      throw new RequestValidationError(errors.array());
-    }
-
     const { email, password } = req.body;
 
     const existingUser = await User.findOne({ email });
