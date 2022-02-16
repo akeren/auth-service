@@ -1,4 +1,4 @@
-import { IApp } from '@src/config/interface';
+import { IApp } from '@src/config/interfaces';
 
 const app: IApp = {
   name: process.env.APP_NAME || 'Auth service API',
