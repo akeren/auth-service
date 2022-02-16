@@ -1,4 +1,4 @@
-import { IMongo } from '@src/config/interface';
+import { IMongo } from '@src/config/interfaces';
 
 const mongo: IMongo = {
   host: process.env.MONGO_DB_HOST || '',
