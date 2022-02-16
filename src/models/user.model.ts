@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-param-reassign */
 import { Schema, model } from 'mongoose';
-import { IUser, IUserModel, IUserDocument } from '@src/models/interface';
+import { IUser, IUserModel, IUserDocument } from '@src/models/interfaces';
 import { Password } from '@src/utils';
 
 const userSchema = new Schema(
