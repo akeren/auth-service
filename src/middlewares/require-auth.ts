@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
-import { UnauthorizedError } from '@src/errors';
-import { User } from '@src/models/user.model';
+import { UnauthorizedError } from '../errors';
+import { User } from '../models/user.model';
 
-export const requireAuth = async (req: Request, res: Response, next: NextFunction) => {
+export const requireAuth = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   if (!req.currentUser) {
     throw new UnauthorizedError('You are not logged in! Please login to get access.');
   }
