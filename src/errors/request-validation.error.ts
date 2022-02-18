@@ -1,15 +1,15 @@
 import { ValidationError } from 'express-validator';
-import { CustomError } from '@src/errors/custom.error';
+import { CustomError } from './custom.error';
 
 export class RequestValidationError extends CustomError {
   // eslint-disable-next-line no-unused-vars
-  constructor(public errors: ValidationError[], public statusCode = 444, public status = false) {
+  constructor(public errors: ValidationError[], public statusCode = 422, public status = false) {
     super('Invalid request parameters');
 
     Object.setPrototypeOf(this, RequestValidationError.prototype);
   }
 
-  serializeErrors() {
+  serializeErrors(): { status: boolean; code: number; errors: { message: string; field?: string }[] } {
     return {
       status: this.status,
       code: this.statusCode,

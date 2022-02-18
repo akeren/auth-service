@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-import { jwtConfig } from '@src/config';
-import { IJwtPayload } from '@src/middlewares/interfaces';
+import { jwtConfig } from '../config';
+import { IJwtPayload } from './interfaces';
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -14,7 +14,7 @@ declare global {
 }
 
 // eslint-disable-next-line consistent-return
-export const currentUser = async (req: Request, res: Response, next: NextFunction) => {
+export const currentUser = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   if (!req.session?.jwt) {
     return next();
   }

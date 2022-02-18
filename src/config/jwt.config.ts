@@ -1,4 +1,4 @@
-import { IJwt } from '@src/config/interfaces';
+import { IJwt } from './interfaces';
 
 const jwt: IJwt = {
   secret: process.env.JWT_SECRET || 'auth-service-with-node-typescript-&-mongodb',

@@ -1,3 +1,3 @@
-import { Password } from '@src/utils/password';
+import { Password } from './password';
 
 export { Password };
