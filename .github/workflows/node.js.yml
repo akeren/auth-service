@@ -1,4 +1,4 @@
-name: Blockchain CI
+name: Auth-service CI
 
 on:
   push:
