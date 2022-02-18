@@ -1,7 +1,7 @@
 import request from 'supertest';
 import { app } from '../app';
 
-describe('User account creation => /api/users/register', (): void => {
+describe('User account creation', (): void => {
   const registerEndpoint = `/api/v1/users/register`;
 
   it('should register successful with aptly response', async (): Promise<void> => {

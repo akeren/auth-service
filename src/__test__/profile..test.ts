@@ -1,7 +1,7 @@
 import request from 'supertest';
 import { app } from '../app';
 
-describe('Me => /api/v1/users/me', (): void => {
+describe('Profile', (): void => {
   it('returns an authenticated user details', async (): Promise<void> => {
     const cookie = await global.getAuthCookie();
 

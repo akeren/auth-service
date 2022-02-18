@@ -1,7 +1,7 @@
 import request from 'supertest';
 import { app } from '../app';
 
-describe('Logout => /api/users/logout', (): void => {
+describe('Logout', (): void => {
   it('should logout successfully', async (): Promise<void> => {
     const cookie = await global.getAuthCookie();
 

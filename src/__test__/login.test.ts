@@ -1,7 +1,7 @@
 import request from 'supertest';
 import { app } from '../app';
 
-describe('Login => api/users/login', (): void => {
+describe('Login', (): void => {
   const loginEndpoint = `/api/v1/users/login`;
   const registerEndpoint = `/api/v1/users/register`;
 
