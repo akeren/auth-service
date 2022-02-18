@@ -1,4 +1,4 @@
-import { CustomError } from '@src/errors/custom.error';
+import { CustomError } from './custom.error';
 
 export class NotFoundError extends CustomError {
   // eslint-disable-next-line no-unused-vars
@@ -8,7 +8,7 @@ export class NotFoundError extends CustomError {
     Object.setPrototypeOf(this, NotFoundError.prototype);
   }
 
-  serializeErrors() {
+  serializeErrors(): { status: boolean; code: number; errors: { message: string; field?: string }[] } {
     return {
       status: this.status,
       code: this.statusCode,

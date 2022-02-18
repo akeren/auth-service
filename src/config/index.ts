@@ -1,6 +1,6 @@
-import '@src/config/env.config';
-import { app } from '@src/config/app.config';
-import { mongo } from '@src/config/mongo.config';
-import { jwt } from '@src/config/jwt.config';
+import './env.config';
+import { app } from './app.config';
+import { mongo } from './mongo.config';
+import { jwt } from './jwt.config';
 
 export { app as appConfig, mongo, jwt as jwtConfig };

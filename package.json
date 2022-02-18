@@ -12,6 +12,13 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"
   },
+    "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [
+      "./src/test-setup.ts"
+    ]
+  },
   "keywords": [
     "microservice",
     "node",
@@ -33,10 +40,12 @@
     "express-validator": "^6.14.0",
     "helmet": "^5.0.2",
     "jsonwebtoken": "^8.5.1",
+    "mongodb-memory-server": "^8.3.0",
     "mongoose": "^6.2.1",
     "morgan": "^1.10.0",
     "pino": "^7.6.5",
-    "pino-pretty": "^7.5.1"
+    "pino-pretty": "^7.5.1",
+    "supertest": "^6.2.2"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
@@ -47,6 +56,7 @@
     "@types/node": "^17.0.14",
     "@types/pino": "^7.0.5",
     "@types/pino-pretty": "^4.7.4",
+    "@types/supertest": "^2.0.11",
     "@typescript-eslint/eslint-plugin": "^5.10.2",
     "@typescript-eslint/parser": "^5.10.2",
     "eslint": "^8.8.0",
@@ -55,7 +65,7 @@
     "eslint-import-resolver-typescript": "^2.5.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-prettier": "^4.0.0",
-    "jest": "^27.4.7",
+    "jest": "^27.5.1",
     "nodemon": "^2.0.15",
     "prettier": "^2.5.1",
     "ts-jest": "^27.1.3",
