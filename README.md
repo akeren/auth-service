@@ -10,4 +10,3 @@ An authentication built using **node.js+typescript+mongoDB+jest**. I created thi
 | POST    | /api/v1/users/login                               | Public  |
 | GET    | /api/v1/users/me                                   | Private  |
 | POST   | /api/v1/users/logout                               | Private  |
-
