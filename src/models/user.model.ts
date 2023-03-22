@@ -34,14 +34,16 @@ const userSchema = new Schema(
 );
 
 // eslint-disable-next-line func-names
-// eslint-disable-next-line consistent-return
+// eslint-disable-next-line consistent-return, func-names
 userSchema.pre('save', async function (next): Promise<void> {
   if (!this.isModified('password')) {
     return next();
   }
 
   const hashedPassword = await Password.hash(this.password);
+
   this.password = hashedPassword;
+
   next();
 });
 
