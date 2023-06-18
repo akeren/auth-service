@@ -19,7 +19,7 @@ export class RequestValidationError extends CustomError {
 
   private formattedValidationErrors(): any[] {
     return this.errors.map(error => {
-      return { message: error.msg, field: error.param };
+      return { message: error.msg, field: error.type };
     });
   }
 }
