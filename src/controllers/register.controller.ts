@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import jwt from 'jsonwebtoken';
+import { sign } from 'jsonwebtoken';
 import { BadRequestError } from '../errors';
 import { User } from '../models/user.model';
 import { jwtConfig } from '../config';
@@ -16,7 +16,7 @@ export async function registerController(req: Request, res: Response): Promise<R
   const user = User.build({ email, password });
   await user.save();
 
-  const token = jwt.sign(
+  const token = sign(
     {
       id: user.id,
       email: user.email,

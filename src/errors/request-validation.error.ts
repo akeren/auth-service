@@ -2,7 +2,6 @@ import { ValidationError } from 'express-validator';
 import { CustomError } from './custom.error';
 
 export class RequestValidationError extends CustomError {
-  // eslint-disable-next-line no-unused-vars
   constructor(public errors: ValidationError[], public statusCode = 422, public status = false) {
     super('Invalid request parameters');
 
