@@ -27,7 +27,6 @@ app.use(loginRouter);
 app.use(profileRouter);
 app.use(logoutRouter);
 
-// eslint-disable-next-line no-unused-vars
 app.all('*', async (req: Request, res: Response): Promise<void> => {
   throw new NotFoundError(`Can't find ${req.originalUrl} on this Server!`);
 });

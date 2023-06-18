@@ -9,7 +9,8 @@ export interface IMongo {
   host: string;
   port: string;
   dbName: string;
-  password?: string;
+  password: string;
+  username: string;
 }
 
 export interface IJwt {

@@ -9,7 +9,7 @@ const server: Server = createServer(app);
 
 (async (): Promise<void> => {
   try {
-    await connect(`${mongo.host}:${mongo.port}/${mongo.dbName}`);
+    await connect(`mongodb+srv://${mongo.username}:${mongo.password}@${mongo.host}/${mongo.dbName}`);
 
     server.listen(port, () => {
       console.info(`${name} running on ${host}:${port}`);

@@ -34,6 +34,5 @@ export interface IUserDocument extends Document {
  * @property {(attributes: IUser) => IUserDocument} build
  */
 export interface IUserModel extends Model<IUserDocument> {
-  // eslint-disable-next-line no-unused-vars
   build(attributes: IUser): IUserDocument;
 }
