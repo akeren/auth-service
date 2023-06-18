@@ -1,5 +1,3 @@
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable no-param-reassign */
 import { Schema, model } from 'mongoose';
 import { IUser, IUserModel, IUserDocument } from './interfaces';
 import { Password } from '../utils';
@@ -33,8 +31,6 @@ const userSchema = new Schema(
   }
 );
 
-// eslint-disable-next-line func-names
-// eslint-disable-next-line consistent-return, func-names
 userSchema.pre('save', async function (next): Promise<void> {
   if (!this.isModified('password')) {
     return next();
@@ -48,7 +44,6 @@ userSchema.pre('save', async function (next): Promise<void> {
 });
 
 userSchema.statics.build = (attributes: IUser): IUserDocument => {
-  // eslint-disable-next-line no-use-before-define
   return new User(attributes);
 };
 
