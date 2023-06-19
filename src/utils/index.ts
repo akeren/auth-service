@@ -1,3 +1,5 @@
 import { Password } from './password';
+import { IJwtPayload } from './interface';
+import { Jwt } from './jwt';
 
-export { Password };
+export { Password, IJwtPayload, Jwt };

@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import { verify } from 'jsonwebtoken';
 import { jwtConfig } from '../config';
-import { IJwtPayload } from './interfaces';
 import { UnauthorizedError } from '../errors';
+import { IJwtPayload } from '../utils';
 
 declare global {
   namespace Express {
