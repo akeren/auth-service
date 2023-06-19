@@ -17,8 +17,6 @@ export class RequestValidationError extends CustomError {
   }
 
   private formattedValidationErrors(): any[] {
-    console.log('ERROR:', this.errors);
-
     return this.errors.map(error => {
       return { message: error.msg, field: error.type === 'field' ? error.path : error.type };
     });
