@@ -5,6 +5,6 @@ import { validateRequest } from '../middlewares';
 
 const router: Router = Router();
 
-router.post('/api/v1/users/login', loginValidation, validateRequest, loginController);
+router.post('/login', loginValidation, validateRequest, loginController);
 
 export { router as loginRouter };
