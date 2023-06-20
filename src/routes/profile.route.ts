@@ -4,6 +4,6 @@ import { profileController } from '../controllers';
 
 const router: Router = Router();
 
-router.get('/api/v1/users/me', currentUser, requireAuth, profileController);
+router.get('/me', currentUser, requireAuth, profileController);
 
 export { router as profileRouter };

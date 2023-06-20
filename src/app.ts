@@ -22,10 +22,10 @@ app.use(
 );
 
 // Routes
-app.use(registerRouter);
-app.use(loginRouter);
-app.use(profileRouter);
-app.use(logoutRouter);
+app.use('/api/v1/auth', logoutRouter);
+app.use('/api/v1/auth', registerRouter);
+app.use('/api/v1/auth', loginRouter);
+app.use('/api/v1/auth', profileRouter);
 
 app.all('*', async (req: Request, res: Response): Promise<void> => {
   throw new NotFoundError(`Can't find ${req.originalUrl} on this Server!`);

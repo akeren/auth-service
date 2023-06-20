@@ -2,7 +2,7 @@ import request from 'supertest';
 import { app } from '../app';
 
 describe('User account creation', (): void => {
-  const registerEndpoint = `/api/v1/users/register`;
+  const registerEndpoint = `/api/v1/auth/register`;
 
   it('should register successful with aptly response', async (): Promise<void> => {
     const response = await request(app).post(registerEndpoint).send({

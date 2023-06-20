@@ -5,7 +5,7 @@ describe('Logout', (): void => {
   it('should logout successfully', async (): Promise<void> => {
     const cookie = await global.getAuthCookie();
 
-    const logoutResponse = await request(app).post('/api/v1/users/logout').set('Cookie', cookie).send({});
+    const logoutResponse = await request(app).post('/api/v1/auth/logout').set('Cookie', cookie).send({});
 
     expect(logoutResponse.status).toBe(200);
     expect(logoutResponse.body.status).toBe(true);
