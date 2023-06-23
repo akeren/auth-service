@@ -1,4 +1,5 @@
 import { Schema, Types, Document, Model, model } from 'mongoose';
+import slugify from 'slugify';
 
 export interface IArticle {
   title: string;
@@ -53,6 +54,12 @@ const articleSchema = new Schema(
     },
   }
 );
+
+articleSchema.pre('save', function (next) {
+  this.slug = slugify(this.title, { lower: true });
+
+  next();
+});
 
 articleSchema.statics.build = (attributes: IArticle): IArticleDocument => {
   return new Article(attributes);
