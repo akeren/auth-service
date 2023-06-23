@@ -97,8 +97,8 @@ describe('Login', (): void => {
     expect(response.body.message).toBe('Logged in successfully.');
     expect(response.body.data.id).toBeDefined();
     expect(response.body.data.email).toBeDefined();
-    expect(response.body.data.created_at).toBeDefined();
-    expect(response.body.data.updated_at).toBeDefined();
+    expect(response.body.data.createdAt).toBeDefined();
+    expect(response.body.data.updatedAt).toBeDefined();
     expect(response.body.jwt.token).toBeDefined();
     expect(response.body.jwt.expiredAt).toBeDefined();
     expect(response.headers['set-cookie']).toBeDefined();

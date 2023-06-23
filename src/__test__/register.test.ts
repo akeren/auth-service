@@ -16,8 +16,8 @@ describe('User account creation', (): void => {
     expect(response.body.message).toBe('Account created successfully');
     expect(response.body.data).toHaveProperty('id');
     expect(response.body.data).toHaveProperty('email');
-    expect(response.body.data).toHaveProperty('created_at');
-    expect(response.body.data).toHaveProperty('updated_at');
+    expect(response.body.data).toHaveProperty('createdAt');
+    expect(response.body.data).toHaveProperty('updatedAt');
     expect(response.headers['set-cookie']).toBeDefined();
   });
 
