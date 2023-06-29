@@ -4,7 +4,7 @@ import cookieSession from 'cookie-session';
 import { appConfig } from './config';
 import { errorHandler } from './middlewares';
 import { registerRouter, profileRouter, loginRouter, logoutRouter } from './routes/auth';
-import { createArticleRouter, getAllArticlesRouter, getArticleRouter } from './routes/article';
+import { createArticleRouter, getAllArticlesRouter, getArticleRouter, getAuthorArticlesRouter } from './routes/article';
 import { NotFoundError } from './errors/not-found.error';
 
 const app: Express = express();
@@ -27,6 +27,7 @@ app.use('/api/v1/auth', logoutRouter);
 app.use('/api/v1/auth', registerRouter);
 app.use('/api/v1/auth', loginRouter);
 app.use('/api/v1/auth', profileRouter);
+app.use('/api/v1/articles', getAuthorArticlesRouter);
 app.use('/api/v1/articles', getArticleRouter);
 app.use('/api/v1/articles', createArticleRouter);
 app.use('/api/v1/articles', getAllArticlesRouter);
