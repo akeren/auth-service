@@ -19,3 +19,44 @@ export async function createArticle(req: Request, res: Response): Promise<Respon
     data: article,
   });
 }
+
+export async function getAllArticles(req: Request, res: Response): Promise<Response> {
+  const articles = await Article.find({});
+
+  return res.status(200).json({
+    status: true,
+    code: res.statusCode,
+    message: 'Articles retrieved successfully!',
+    data: articles,
+  });
+}
+
+export async function getArticle(req: Request, res: Response): Promise<Response> {
+  const article = await Article.findById(req.params.id);
+
+  if (!article) {
+    return res.status(404).json({
+      status: false,
+      code: res.statusCode,
+      message: `There's no article associated with the ID!`,
+    });
+  }
+
+  return res.status(200).json({
+    status: true,
+    code: res.statusCode,
+    message: `Article retrieved successfully!`,
+    data: article,
+  });
+}
+
+export async function getAuthorArticles(req: Request, res: Response): Promise<Response> {
+  const articles = await Article.find({ author: req.currentUser?.id });
+
+  return res.status(200).json({
+    status: true,
+    code: res.statusCode,
+    message: 'Articles retrieved successfully',
+    data: articles,
+  });
+}
