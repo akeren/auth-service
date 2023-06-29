@@ -1,6 +1,21 @@
-import { Schema, model } from 'mongoose';
-import { IUser, IUserModel, IUserDocument } from './index';
+import { Schema, model, Model, Document } from 'mongoose';
 import { Password } from '../utils';
+
+export interface IUser {
+  email: string;
+  password: string;
+}
+
+export interface IUserDocument extends Document {
+  email: string;
+  password: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface IUserModel extends Model<IUserDocument> {
+  build(attributes: IUser): IUserDocument;
+}
 
 const userSchema = new Schema(
   {
@@ -19,11 +34,8 @@ const userSchema = new Schema(
     toJSON: {
       transform(doc: any, ret: any) {
         ret.id = ret._id;
-        ret.created_at = ret.createdAt;
-        ret.updated_at = ret.updatedAt;
+
         delete ret._id;
-        delete ret.createdAt;
-        delete ret.updatedAt;
         delete ret.password;
         delete ret.__v;
       },
