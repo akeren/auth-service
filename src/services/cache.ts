@@ -18,7 +18,9 @@ Query.prototype.exec = async function () {
   const cacheValue = await redisClient.getValue(cacheKey);
 
   if (cacheValue) {
-    return JSON.parse(cacheValue);
+    const doc = new this.model(JSON.parse(cacheValue));
+
+    return doc;
   }
 
   const result = await exec.apply(this, arguments as any);
