@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { User } from '../models/user.model';
 import { BadRequestError } from '../errors';
-import { Password, Jwt } from '../utils';
+import { Password, Jwt } from '../services';
 
 export async function loginController(req: Request, res: Response): Promise<Response> {
   const { email, password } = req.body;

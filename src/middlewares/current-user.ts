@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { verify } from 'jsonwebtoken';
 import { jwtConfig } from '../config';
 import { UnauthorizedError } from '../errors';
-import { IJwtPayload } from '../utils';
+import { IJwtPayload } from '../services';
 
 declare global {
   namespace Express {
