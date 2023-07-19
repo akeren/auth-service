@@ -20,6 +20,7 @@ Query.prototype.exec = async function () {
   if (cacheValue) {
     const doc = JSON.parse(cacheValue);
 
+    console.log(`RETRIEVING FROM THE CACHE`);
     return Array.isArray(doc) ? doc.map(d => new this.model(d)) : new this.model(doc);
   }
 

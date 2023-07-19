@@ -27,6 +27,7 @@ const userSchema = new Schema(
     password: {
       type: String,
       required: true,
+      select: false,
     },
   },
   {
@@ -36,7 +37,6 @@ const userSchema = new Schema(
         ret.id = ret._id;
 
         delete ret._id;
-        delete ret.password;
         delete ret.__v;
       },
     },

@@ -3,6 +3,7 @@ import { sign } from 'jsonwebtoken';
 import { BadRequestError } from '../errors';
 import { User } from '../models/user.model';
 import { jwtConfig } from '../config';
+import { UserDto } from '../dtos';
 
 export async function registerController(req: Request, res: Response): Promise<Response> {
   const { email, password } = req.body;
@@ -14,6 +15,7 @@ export async function registerController(req: Request, res: Response): Promise<R
   }
 
   const user = User.build({ email, password });
+
   await user.save();
 
   const token = sign(
@@ -35,6 +37,6 @@ export async function registerController(req: Request, res: Response): Promise<R
     status: true,
     code: res.statusCode,
     message: 'Account created successfully',
-    data: user,
+    data: new UserDto(user),
   });
 }
