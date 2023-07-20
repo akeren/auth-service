@@ -9,8 +9,6 @@ export async function loginController(req: Request, res: Response): Promise<Resp
 
   const user = await User.findOne({ email }).select('+password');
 
-  console.log(user);
-
   if (!user) {
     throw new BadRequestError('Invalid login credentials.');
   }
