@@ -1,11 +1,12 @@
 import { Query } from 'mongoose';
-import { RedisService } from '../services';
+import { RedisService, ICacheOptions } from '../services';
 
 declare module 'mongoose' {
   interface Query<ResultType, DocType, THelpers = {}, RawDocType = DocType> {
-    cache(): this;
+    cache(option: ICacheOptions): this;
 
     useCache: boolean;
+    cacheKeyToUse: string;
   }
 }
 
@@ -13,8 +14,10 @@ const redisClient = new RedisService();
 
 (async () => await redisClient.connect())();
 
-Query.prototype.cache = function () {
+Query.prototype.cache = function (options: ICacheOptions = {}) {
   this.useCache = true;
+
+  this.cacheKeyToUse = JSON.stringify(options.key || '');
 
   return this;
 };
@@ -26,15 +29,15 @@ Query.prototype.exec = async function () {
     return exec.apply(this, arguments as any);
   }
 
-  const cacheKey = JSON.stringify({
+  const cacheField = JSON.stringify({
     ...this.getQuery(),
     collection: this.model.collection.collectionName,
   });
 
-  const cacheValue = await redisClient.getValue(cacheKey);
+  const cacheValue = await redisClient.getValue(this.cacheKeyToUse);
 
   if (cacheValue) {
-    const doc = JSON.parse(cacheValue);
+    const doc = JSON.parse(cacheValue as unknown as string);
 
     console.log(`RETRIEVING FROM THE CACHE`);
 
@@ -43,7 +46,7 @@ Query.prototype.exec = async function () {
 
   const result = await exec.apply(this, arguments as any);
 
-  redisClient.setValue(cacheKey, JSON.stringify(result));
+  await redisClient.setValue(cacheField, JSON.stringify(result), this.cacheKeyToUse);
 
   return result;
 };

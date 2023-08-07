@@ -17,11 +17,15 @@ export class RedisService {
     return await this.disconnect();
   }
 
-  async setValue(key: string, value: string): Promise<string | null> {
-    return await this.redisClient.set(key, value);
+  async setValue(cacheField: string, value: string, hKey: string): Promise<number | null> {
+    const redisCacheValue = await this.redisClient.hSet(hKey, cacheField, value);
+
+    await this.redisClient.expire(hKey, 86400);
+
+    return redisCacheValue;
   }
 
-  async getValue(key: string): Promise<string | null> {
-    return await this.redisClient.get(key);
+  async getValue(hKey: string): Promise<string[]> {
+    return await this.redisClient.hVals(hKey);
   }
 }
