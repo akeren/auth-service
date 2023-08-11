@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { Article } from '../../models';
+import { clearCacheData } from '../../services';
 
 export async function createArticle(req: Request, res: Response): Promise<Response> {
   const { title, content } = req.body;
@@ -11,6 +12,8 @@ export async function createArticle(req: Request, res: Response): Promise<Respon
   });
 
   await article.save();
+
+  clearCacheData(req.currentUser?.id as string);
 
   return res.status(201).json({
     status: true,

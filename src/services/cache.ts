@@ -36,7 +36,7 @@ Query.prototype.exec = async function () {
 
   const cacheValue = await redisClient.getValue(this.cacheKeyToUse);
 
-  if (cacheValue) {
+  if (cacheValue.length > 0) {
     const doc = JSON.parse(cacheValue as unknown as string);
 
     console.log(`RETRIEVING FROM THE CACHE`);
@@ -46,7 +46,11 @@ Query.prototype.exec = async function () {
 
   const result = await exec.apply(this, arguments as any);
 
-  await redisClient.setValue(cacheField, JSON.stringify(result), this.cacheKeyToUse);
+  result.length > 0 ? await redisClient.setValue(cacheField, JSON.stringify(result), this.cacheKeyToUse) : '';
 
   return result;
 };
+
+export async function clearCacheData(hashKey: string) {
+  return await redisClient.clearCacheData(hashKey);
+}

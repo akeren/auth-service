@@ -28,4 +28,8 @@ export class RedisService {
   async getValue(hKey: string): Promise<string[]> {
     return await this.redisClient.hVals(hKey);
   }
+
+  async clearCacheData(hashKey: string): Promise<void> {
+    await this.redisClient.del(JSON.stringify(hashKey));
+  }
 }
