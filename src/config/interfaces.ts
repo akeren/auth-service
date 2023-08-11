@@ -17,3 +17,8 @@ export interface IJwt {
   secret: string;
   expiryTime: string;
 }
+
+export interface IRedis {
+  url: string;
+  port: string;
+}

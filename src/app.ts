@@ -1,5 +1,6 @@
 import express, { Express, Request, Response } from 'express';
 import 'express-async-errors';
+import './services/cache';
 import cookieSession from 'cookie-session';
 import { appConfig } from './config';
 import { errorHandler } from './middlewares';

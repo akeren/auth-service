@@ -51,7 +51,9 @@ export async function getArticle(req: Request, res: Response): Promise<Response>
 }
 
 export async function getAuthorArticles(req: Request, res: Response): Promise<Response> {
-  const articles = await Article.find({ author: req.currentUser?.id });
+  const userId = String(req.currentUser?.id);
+
+  const articles = await Article.find({ author: userId }).cache({ key: userId });
 
   return res.status(200).json({
     status: true,

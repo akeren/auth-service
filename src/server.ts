@@ -1,4 +1,4 @@
-import { createServer, Server } from 'http';
+import { createServer, Server } from 'node:http';
 import { connect } from 'mongoose';
 import { appConfig, mongo } from './config';
 import { app } from './app';
