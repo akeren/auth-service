@@ -1,7 +1,6 @@
 import { CustomError } from './custom.error';
 
 export class NotFoundError extends CustomError {
-  // eslint-disable-next-line no-unused-vars
   constructor(public message = 'Resource not found.', public statusCode = 404, public status = false) {
     super(message);
 

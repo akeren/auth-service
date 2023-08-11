@@ -5,6 +5,7 @@ const mongo: IMongo = {
   port: process.env.MONGO_DB_PORT || '27017',
   dbName: process.env.MONGO_DB_NAME || 'auth',
   password: process.env.MONGO_DB_PASSWORD || '',
+  username: process.env.MONGO_DB_USERNAME || '',
 };
 
 export { mongo };

@@ -6,7 +6,7 @@ An authentication built using **node.js+typescript+mongoDB+jest**. I created thi
 
 | Methods | Endpoints                                         | Access  |
 | ------- | -----------------------------------------------   | ------- |
-| POST    | /api/v1/users/register                            | Public  |
-| POST    | /api/v1/users/login                               | Public  |
-| GET    | /api/v1/users/me                                   | Private  |
-| POST   | /api/v1/users/logout                               | Private  |
+| POST    | /api/v1/auth/register                             | Public  |
+| POST    | /api/v1/auth/login                                | Public  |
+| GET     | /api/v1/auth/me                                   | Private  |
+| POST    | /api/v1/auth/logout                               | Private  |

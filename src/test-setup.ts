@@ -17,9 +17,7 @@ beforeAll(async (): Promise<void> => {
 beforeAll(async (): Promise<void> => {
   const collections = await mongoose.connection.db.collections();
 
-  // eslint-disable-next-line no-restricted-syntax
   for (const collection of collections) {
-    // eslint-disable-next-line no-await-in-loop
     await collection.deleteMany({});
   }
 });
@@ -34,7 +32,7 @@ global.getAuthCookie = async (): Promise<string[]> => {
   const password = 'password';
 
   const response = await request(app)
-    .post('/api/v1/users/register')
+    .post('/api/v1/auth/register')
     .send({
       email,
       password,

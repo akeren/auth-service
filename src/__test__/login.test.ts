@@ -2,8 +2,8 @@ import request from 'supertest';
 import { app } from '../app';
 
 describe('Login', (): void => {
-  const loginEndpoint = `/api/v1/users/login`;
-  const registerEndpoint = `/api/v1/users/register`;
+  const loginEndpoint = `/api/v1/auth/login`;
+  const registerEndpoint = `/api/v1/auth/register`;
 
   it('fails when email and password are empty', async (): Promise<void> => {
     const response = await request(app).post(loginEndpoint).send({});
@@ -97,8 +97,10 @@ describe('Login', (): void => {
     expect(response.body.message).toBe('Logged in successfully.');
     expect(response.body.data.id).toBeDefined();
     expect(response.body.data.email).toBeDefined();
-    expect(response.body.data.created_at).toBeDefined();
-    expect(response.body.data.updated_at).toBeDefined();
+    expect(response.body.data.createdAt).toBeDefined();
+    expect(response.body.data.updatedAt).toBeDefined();
+    expect(response.body.jwt.token).toBeDefined();
+    expect(response.body.jwt.expiredAt).toBeDefined();
     expect(response.headers['set-cookie']).toBeDefined();
   });
 });
